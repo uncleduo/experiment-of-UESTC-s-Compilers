@@ -75,7 +75,6 @@ def advanced():
     global pos
     pos += 1
 
-# 这里有错
 def now_more_one(temp = 1):
     if dyd_list[pos+temp][1] == EOLN:
         return now_more_one(temp+1)
@@ -115,7 +114,6 @@ def main_procedure():
 
 def branch_procedure():
     # <分程序>→begin <说明语句表>；<执行语句表> end
-    # TODO
     if now() == begin_code:
         advanced()
         declare_statement_table()
@@ -137,7 +135,6 @@ def declare_statement_table():
     # 需要改写为
     # <说明语句表>→<说明语句><说明语句表A>
     # <说明语句表A>→;<说明语句><说明语句表A>│空
-    # TODO
     declare_statement()
     declare_statement_tableA()
 
@@ -203,7 +200,6 @@ def var(define_or_use,is_formal = 0):
 
 def identifier():
     # <标识符>→<字母>│<标识符><字母>│ <标识符><数字>
-    # TODO
     if now() == identifier_code:
         temp_word = now_word()
         advanced()
@@ -389,6 +385,7 @@ def factor():
 
 def func_call():
     # <函数调用>→<标识符>(<算数表达式>)
+    # 这个文法书上漏了，感谢晓辉男神告诉我
     identifier()
     if now() == 21:
         advanced()
@@ -407,7 +404,6 @@ def constant():
 def unsigned_integer():
     if now() == 11:
         advanced()
-        #TODO
     else:
         err_print("常数调用出错，遇到非数字")
 
